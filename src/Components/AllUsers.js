@@ -24,6 +24,7 @@ class AllUsers extends Component {
         })
       );
   }
+
    test = [
     {
     name:"Jim",
@@ -48,19 +49,14 @@ class AllUsers extends Component {
   ]
 
     sortData =()=>{
-      test.sort((a,b)=> a.age-b.age);
-      console.log(test)
+      this.test.sort((a,b)=> a.sales-b.sales);
+      console.log(this.test)
     }
 
-
-
-
   render() {
-    this.sortData();
     const users = this.state.allData.map((data) => (
         <Alldata key={data.id} username={data.login} avatar={data.avatar_url} />
     ));
-
     if (this.state.isLoading) {
       return <h1>Loading...</h1>;
     } else {
