@@ -29,3 +29,73 @@ nav {
   font-weight: 300;
   font-size: x-large;
 }
+
+.display{
+  width: 70%;
+  height: 460px;
+  margin:2% auto;
+  display: flex;
+}
+
+.user{
+margin:0;width: 100%;
+background-color: white;
+padding: 3%;
+display: flex;
+}
+
+#info{
+  margin:2%;
+}
+
+.user img{
+  height: 100%;
+  border-radius: 10%;
+}
+
+.filters{
+  width: 50%;
+  margin: 2% auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.profile{
+  width: 70% ;
+  margin:5% auto;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.profile img{
+  display: block;
+  border-radius: 50%;
+  height: 400px;
+  margin: 5% auto ;
+}
+
+.heading{
+  text-align: center;
+  font-weight: 700;
+}
+
+.follow{
+  display: flex;
+  justify-content: space-around;
+  padding-left: 25%;
+  padding-right: 25%;
+}
+
+.repos{
+  width: 80%;
+  margin: 2% auto;
+  border:2px solid black;
+  border-radius: 10px;
+  padding:1%
+}
+.sect{
+  margin-top: 5%;
+}
+.sect h1{
+  text-align: center;
+}

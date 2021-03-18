@@ -1,40 +1,82 @@
-import React from "react";
-import ReactDOM from "react";
+import {React, Component} from "react";
 import Alldata from "./Alldata";
-import { Link } from "react-router-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 // import Result from "./Result";
 
-class AllUsers extends ReactDOM.Component {
+class AllUsers extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      isLoading: false,
+      allData: [],
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    fetch("https://api.github.com/users")
+      .then((resposnse) => resposnse.json())
+      .then((data) =>
+        this.setState({
+          allData: data,
+          isLoading: false,
+        })
+      );
+  }
+   test = [
+    {
+    name:"Jim",
+    age:"21",
+    sales:"1900"
+    },
+    {
+      name:"Dwight",
+      age:"22",
+      sales:"1700"
+    },
+    {
+      name:"Stanley",
+      age:"31",
+      sales:"1800"
+    },
+    {
+      name:"Phyllis",
+      age:"26",
+      sales:"160"
+    }
+  ]
+
+    sortData =()=>{
+      test.sort((a,b)=> a.age-b.age);
+      console.log(test)
+    }
 
 
 
 
   render() {
-    const users = this.props.data.map((data) => (
-      <Link to={`/${data.login}`}>
+    this.sortData();
+    const users = this.state.allData.map((data) => (
         <Alldata key={data.id} username={data.login} avatar={data.avatar_url} />
-      </Link>
     ));
 
- 
+    if (this.state.isLoading) {
+      return <h1>Loading...</h1>;
+    } else {
       return (
         <div>
-          <form>
-            <input
-              type='text'
-              name='search'
-              placeholder='Search for a user'
-              onChange={this.handleChange}
-            ></input>
-            <button>Search</button>
-          </form>
-          <button onClick = {()=> this.props.sortData("followers")}> Sort by followers</button>
+          <div className = "filters">
+          <button className = "btn btn-lg btn-secondary"> Sort by followers</button>
+          <button className = "btn btn-lg btn-secondary"> Sort by Repositories</button>
+          <button className = "btn btn-lg btn-secondary"> Open for work</button>
+          </div>
           {users}
         </div>
       );
     }
   }
-// }
+}
 
-export default AllUsers;
+export default AllUsers
+

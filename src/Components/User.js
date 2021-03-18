@@ -7,7 +7,7 @@ class User extends ReactDOM.Component {
     super();
     this.state = {
       isLoading: false,
-      data: {},
+      data: [],
     };
   }
 
@@ -18,26 +18,36 @@ class User extends ReactDOM.Component {
       .then((data) =>
         this.setState({
           data: data,
-          isLoading: true,
+          isLoading: false,
         })
       );
   }
 
   render() {
+    if(this.state.isLoading){
+      return <h1>Loading...</h1>
+    }else{
     return (
-      <div>
+      <div className = "profile">
         <img src={this.state.data.avatar_url}></img>
-        <h1>
-          {this.state.data.login} ({this.state.data.name})
-        </h1>
-        <p>Git hub link: {this.state.data.html_url}</p>
-        <h3>Followers: {this.state.data.followers}</h3>
-        <h3>Following: {this.state.data.following}</h3>
-        <h1>Repositories</h1>
+        <div className = "info">
+          <div className = "heading">
+          <h1>
+            {this.state.data.login} ({this.state.data.name})
+          </h1>
+          <p>Git hub link: {this.state.data.html_url}</p>
+          </div>
+          <div className = "follow">
+          <h3>Followers: {this.state.data.followers}</h3>
+          <h3>Following: {this.state.data.following}</h3>
+          </div>
+        </div>
+        {console.log(this.state.data)}
         <Repos url={this.state.data.repos_url} />
       </div>
     );
   }
+}
 }
 
 export default User;
