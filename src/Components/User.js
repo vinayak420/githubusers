@@ -29,7 +29,7 @@ class User extends ReactDOM.Component {
     }else{
     return (
       <div className = "profile">
-        <img src={this.state.data.avatar_url}></img>
+        <img src={this.state.data.avatar_url} alt=""></img>
         <div className = "info">
           <div className = "heading">
           <h1>

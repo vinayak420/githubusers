@@ -28,7 +28,7 @@ class Repos extends ReactDOM.Component {
           return (
             <div className = "repos">
               <h3>{repos.name}</h3>
-              <p>Repository Link: {repos.html_url} </p>
+              <p>Repository Link: <a href = {repos.html_url}>{repos.html_url}</a> </p>
             </div>
           )
         })}

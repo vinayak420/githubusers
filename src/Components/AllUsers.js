@@ -10,6 +10,7 @@ class AllUsers extends Component {
     this.state = {
       isLoading: false,
       allData: [],
+      sortfunction: "not running"
     };
   }
 
@@ -25,32 +26,54 @@ class AllUsers extends Component {
       );
   }
 
-   test = [
-    {
-    name:"Jim",
-    age:"21",
-    sales:"1900"
-    },
-    {
-      name:"Dwight",
-      age:"22",
-      sales:"1700"
-    },
-    {
-      name:"Stanley",
-      age:"31",
-      sales:"1800"
-    },
-    {
-      name:"Phyllis",
-      age:"26",
-      sales:"160"
-    }
-  ]
+  //  test = [
+  //   {
+  //   name:"Jim",
+  //   age:"21",
+  //   sales:"1900"
+  //   },
+  //   {
+  //     name:"Dwight",
+  //     age:"22",
+  //     sales:"1700"
+  //   },
+  //   {
+  //     name:"Stanley",
+  //     age:"31",
+  //     sales:"1800"
+  //   },
+  //   {
+  //     name:"Phyllis",
+  //     age:"26",
+  //     sales:"160"
+  //   }
+  // ]
 
-    sortData =()=>{
-      this.test.sort((a,b)=> a.sales-b.sales);
-      console.log(this.test)
+    // sortData =()=>{
+    //   this.test.sort((a,b)=> {
+    //     let nameA = a.name.toUpperCase();
+    //     let nameB = b.name.toUpperCase();
+    //     console.log(nameA, nameB)
+    //     if(nameA>nameB){
+    //       return 1;
+    //     }
+    //     if(nameB<nameA){
+    //       return -1;
+    //     }
+    //     return 0;
+    //   });
+    //   console.log(this.test)
+    // }
+
+    sort=()=>{
+      this.setState({isLoading:true},()=> {
+        console.log(this.state)
+        this.setState({
+          allData: this.state.allData.sort((a,b)=> parseFloat(a.id) - parseFloat(b.id) ),
+          isLoading: false,
+        })
+      })
+      console.log(this.state)
     }
 
   render() {
@@ -63,8 +86,8 @@ class AllUsers extends Component {
       return (
         <div>
           <div className = "filters">
-          <button className = "btn btn-lg btn-secondary"> Sort by followers</button>
-          <button className = "btn btn-lg btn-secondary"> Sort by Repositories</button>
+          <button className = "btn btn-lg btn-secondary" onClick = {this.sort}> Sort by least relavent</button>
+          <button className = "btn btn-lg btn-secondary" onClick = {this.sortAge}> Sort by Repositories</button>
           <button className = "btn btn-lg btn-secondary"> Open for work</button>
           </div>
           {users}
